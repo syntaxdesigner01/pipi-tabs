@@ -378,11 +378,19 @@
                 <input type="tel" name="phone" placeholder="Your phone number" required
                     class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-colors" />
                 <button type="submit"
-                    class="w-full bg-black dark:bg-white dark:text-black text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition">Join
+                    class="w-full bg-black dark:bg-white dark:text-black text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition"
+                    id="submitBtn">Join
                     Waitlist</button>
             </form>
             <p id="formMessage" class="mt-4 text-sm text-gray-600 hidden">Submitting…</p>
         </div>
+    </section>
+
+
+    <!-- modal -->
+    <section id="message"
+        class="text-center text-white p-4 rounded-md fixed top-[20vh] hidden right-0 -translate-x-4 z-40 shadow-md border border-slate-200 capitalize  font-semibold">
+
     </section>
 
     <!-- BACK TO TOP BUTTON -->
@@ -394,7 +402,7 @@
 
     <!-- FOOTER -->
     <footer
-        class="py-10 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm transition-colors duration-300">
+        class="py-10 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm transition-colors duration-300 md:relative top-40">
         <p>© 2026 Pipi Tabs – Built by Akpan Joseph</p>
     </footer>
 
@@ -403,6 +411,8 @@
         // Theme Toggle Logic
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
+        const messageBox = document.getElementById('message');
+        const submitBtn = document.getElementById('submitBtn');
 
         // Check local storage or system preference
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -444,17 +454,42 @@
         form.addEventListener("submit", async e => {
             e.preventDefault();
             msg.classList.remove("hidden");
+            submitBtn.disabled = true;
+            submitBtn.classList.add("opacity-50");
+            submitBtn.classList.add("cursor-not-allowed");
+            submitBtn.classList.add("pointer-events-none");
             msg.textContent = "Submitting…";
             try {
-                const res = await fetch("YOUR_SCRIPT_URL_HERE", {
+                const res = await fetch("https://script.google.com/macros/s/AKfycbyRYMO-zUloeDKTQNAHrAfXY_YAYIvxaIu1uIgw-V1Rwwa6PcGwNwlSs6HPMCVO7cQ8/exec", {
                     method: "POST",
                     body: new FormData(form)
                 });
-                msg.textContent = "Thank you! You’re on the waitlist 🎉";
-                form.reset();
+                messageBox.textContent = "Thank you! You’re on the waitlist 🎉";
+                messageBox.classList.remove('hidden');
+                messageBox.classList.add('bg-green-500');
+
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                    msg.textContent = "Thank you! You’re on the waitlist 🎉";
+                    form.reset();
+                }, 3000);
+
             } catch (err) {
-                msg.textContent = "Something went wrong — try again later.";
+                messageBox.textContent = "Something went wrong try again later.";
+                messageBox.classList.remove('hidden');
+                messageBox.classList.add('bg-red-500');
+
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                    form.reset();
+                }, 3000);
+
             }
+
+
+            submitBtn.classList.remove("opacity-50");
+            submitBtn.classList.remove("cursor-not-allowed");
+            submitBtn.classList.remove("pointer-events-none");
         });
 
         // Mobile Testimonial Stack Logic
