@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pipi Tabs ⏰ – Smart Reminders for Chrome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'great-vibes': ['"Great Vibes"', 'cursive'],
+                    },
+                    colors: {
+                        tabBg: '#FFFD8F',
+                        primary: '#043915',
+                        secondary: '#4c763b'
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-abstract {
+            position: relative;
+        }
+
+        .bg-abstract::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.07) 1.2px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1.2px, transparent 1px),
+                linear-gradient(to right, rgba(0, 0, 0, 0.03) 1.2px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1.2px, transparent 1px);
+            background-size: 64px 56px, 64px 56px, 16px 14px, 16px 14px;
+            mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+            background-position-y: var(--bg-y, 0px);
+        }
+
+        .dark .bg-abstract::before {
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.07) 1.2px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1.2px, transparent 1px),
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1.2px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1.2px, transparent 1px);
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300">
+    <!-- NAVBAR -->
+
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <p class="bg-yellow-300 text-black text-center py-2 font-medium">
+            <marquee behavior="" direction="">
+
+                🚀 Pipi Tabs is launching soon! Join the
+                waitlist
+                now to be the first to try it out. <a href="#waitlist" class="underline font-bold">Sign Up Here</a> 🚀
+            </marquee>
+        </p>
+        <nav
+            class="   bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
+                <h1 class="font-great-vibes text-3xl dark:text-white text-3xl font-bold text-primary">Pipi Tabs</h1>
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300">
+                        <i class="fa-solid fa-moon dark:hidden text-2xl"></i>
+
+                        <i class="fa-solid fa-sun hidden text-yellow-300 dark:block text-2xl"></i>
+
+                    </button>
+                    <a href="#waitlist" class="text-sm font-medium hover:underline dark:text-white hidden md:block">Join
+                        Waitlist
+
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+
+    <!-- HERO -->
+    <section
+        class="min-h-screen md:relative top-40 md:mb-40 flex flex-col justify-center items-center text-center px-6">
+        <div class="fade-up ">
+            <section class="">
+                <section class="z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl p-4">
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-semibold mb-6">Never forget a tab again.
+                    </h2>
+                    <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto mb-10">
+                        Effortlessly save, group, and manage your bookmarks all in one Extension. Pipi turns your
+                        chaotic tabs
+                        into a structured workflow with just a few clicks.
+                    </p>
+                    <a href="#waitlist"
+                        class="bg-black text-white px-6 py-3 group rounded-md  text-md hover:text-secondary font-bold hover:bg-tabBg transition dark:hover:bg-tabBg">Join
+                        Waitlist <i
+                            class="fa-solid fa-arrow-right -rotate-[50deg] transition-transform group-hover:translate-x-2 group-hover:rotate-[0deg]"></i></a>
+                </section>
+
+                <section class=" transform opacity-40 w-full max-w-4xl mt-20 z-2  pointer-events-none dark:opacity-80">
+                    <img src="./asserts/tabs.svg" alt="" srcset="">
+                </section>
+            </section>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="md:p-10">
+        <section id="features" class="py-24  transition-colors duration-300 md:relative md:top-40 bg-abstract">
+            <div class="max-w-5xl mx-auto px-6  ">
+                <h3 class="text-3xl font-semibold text-center mb-12 fade-up">✨ Features</h3>
+                <div class="grid md:grid-cols-3 gap-10 text-center">
+                    <div
+                        class="fade-up bg-black/90 text-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition flex flex-col items-center">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-xl mb-4 text-gray-800 dark:text-white">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <p class="font-medium">Set reminders for any URL</p>
+                    </div>
+                    <div
+                        class="fade-up bg-black/90 text-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition flex flex-col items-center">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-xl mb-4 text-gray-800 dark:text-white">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                        <p class="font-medium">Receive notifications instantly</p>
+                    </div>
+                    <div
+                        class="fade-up bg-black/90 text-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition flex flex-col items-center">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-xl mb-4 text-gray-800 dark:text-white">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <p class="font-medium">Alarm sound playback</p>
+                    </div>
+                    <div
+                        class="fade-up bg-black/90 text-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition flex flex-col items-center">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-xl mb-4 text-gray-800 dark:text-white">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <p class="font-medium">Bookmark Tabs</p>
+                    </div>
+                    <div
+                        class="fade-up bg-black/90 text-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition flex flex-col items-center">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-xl mb-4 text-gray-800 dark:text-white">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <p class="font-medium">Auto Sync of Data</p>
+                    </div>
+                    <div
+                        class="fade-up bg-black/90 text-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition flex flex-col items-center">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-xl mb-4 text-gray-800 dark:text-white">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <p class="font-medium">Tab Optimization</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!-- HOW IT WORKS -->
+    <section id="how"
+        class="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 md:relative top-40">
+        <div class="max-w-6xl mx-auto px-6 fade-up text-center">
+            <h3 class="text-3xl font-semibold mb-8">🚀 How It Works</h3>
+            <div class="relative max-w-5xl mx-auto mt-12">
+                <!-- Vertical Line -->
+                <div
+                    class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-700">
+                </div>
+
+                <!-- Step 1 -->
+                <div class="relative flex items-center justify-between mb-12">
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:text-right relative">
+                        <div
+                            class="hidden md:block absolute top-1/2 left-full w-[20%] h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2">
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+                            <h4 class="text-lg font-semibold mb-2 dark:text-white">Set Reminder</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Pick a date & time for your reminder.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                        <div
+                            class="w-8 h-8 bg-black dark:bg-white rounded-full flex items-center justify-center text-white dark:text-black font-bold z-10 shadow-lg relative">
+                            1
+                            <div
+                                class="absolute inset-0 w-full h-full bg-black dark:bg-white rounded-full animate-pulse -z-10 opacity-50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-5/12"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex items-center justify-between mb-12">
+                    <div
+                        class="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                        <div
+                            class="w-8 h-8 bg-black dark:bg-white rounded-full flex items-center justify-center text-white dark:text-black font-bold z-10 shadow-lg relative">
+                            2
+                            <div
+                                class="absolute inset-0 w-full h-full bg-black dark:bg-white rounded-full animate-pulse -z-10 opacity-50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 text-left relative md:left-4">
+                        <div
+                            class="hidden md:block absolute top-1/2 right-full w-[20%] h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2">
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+                            <h4 class="text-lg font-semibold mb-2 dark:text-white">Smart Scheduling</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Pipi schedules it using
+                                <code>chrome.alarms</code>.
+                            </p>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex items-center justify-between">
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:text-right relative">
+                        <div
+                            class="hidden md:block absolute top-1/2 left-full w-[20%] h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2">
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+                            <h4 class="text-lg font-semibold mb-2 dark:text-white">Instant Notification</h4>
+                            <p class="text-gray-600 dark:text-gray-400">When time’s up you get notified & your tab
+                                reopens
+                                instantly.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                        <div
+                            class="w-8 h-8 bg-black dark:bg-white rounded-full flex items-center justify-center text-white dark:text-black font-bold z-10 shadow-lg relative">
+                            3
+                            <div
+                                class="absolute inset-0 w-full h-full bg-black dark:bg-white rounded-full animate-pulse -z-10 opacity-50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-5/12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials"
+        class="py-24 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 md:relative top-40">
+        <div class="max-w-6xl mx-auto px-6 fade-up">
+            <h3 class="text-3xl font-semibold text-center mb-12">❤️ Loved by Early Users</h3>
+
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+                <!-- Card 1 -->
+                <div
+                    class="snap-center shrink-0 w-[70vw] md:w-96 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-300">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold dark:text-white">Alex D.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Product Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">"Finally, a way to declutter my browser without losing
+                        important tabs. The reminders are a lifesaver!"</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="snap-center shrink-0 w-[70vw] md:w-96 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-300">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold dark:text-white">Sarah M.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">"I used to have 50+ tabs open. Now I just schedule them
+                        for later. Pipi Tabs is exactly what I needed."</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="snap-center shrink-0 w-[70vw] md:w-96 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-300">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold dark:text-white">James K.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">"The alarm sound feature ensures I actually look at the
+                        tab when it reopens. Super helpful for studying."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAITLIST -->
+    <section id="waitlist"
+        class="py-24 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 md:relative top-40">
+        <div class="max-w-md mx-auto px-6 text-center fade-up">
+            <h3 class="text-3xl font-semibold mb-6">Join the Waitlist</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-8">Be the first to try Pipi Tabs when it launches.</p>
+            <form id="waitlistForm" class="space-y-4">
+                <input type="text" name="name" placeholder="Your name" required
+                    class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-colors" />
+                <input type="email" name="email" placeholder="Your email" required
+                    class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-colors" />
+                <input type="tel" name="phone" placeholder="Your phone number" required
+                    class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-colors" />
+                <button type="submit"
+                    class="w-full bg-black dark:bg-white dark:text-black text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition">Join
+                    Waitlist</button>
+            </form>
+            <p id="formMessage" class="mt-4 text-sm text-gray-600 hidden">Submitting…</p>
+        </div>
+    </section>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop"
+        class="fixed bottom-[10em] right-6 z-50 p-4 rounded-full bg-black text-white shadow-lg transition-all duration-300 opacity-0 translate-y-10 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 focus:outline-none"
+        aria-label="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- FOOTER -->
+    <footer
+        class="py-10 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm transition-colors duration-300">
+        <p>© 2026 Pipi Tabs – Built by Akpan Joseph</p>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check local storage or system preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Parallax effect for features background
+        window.addEventListener('scroll', () => {
+            const features = document.getElementById('features');
+            if (features) {
+                const scrolled = window.scrollY;
+                features.style.setProperty('--bg-y', `${scrolled * 0.2}px`);
+            }
+        });
+
+        // fade-in observer
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add("visible");
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+        // waitlist form submit
+        const form = document.getElementById("waitlistForm");
+        const msg = document.getElementById("formMessage");
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            msg.classList.remove("hidden");
+            msg.textContent = "Submitting…";
+            try {
+                const res = await fetch("YOUR_SCRIPT_URL_HERE", {
+                    method: "POST",
+                    body: new FormData(form)
+                });
+                msg.textContent = "Thank you! You’re on the waitlist 🎉";
+                form.reset();
+            } catch (err) {
+                msg.textContent = "Something went wrong — try again later.";
+            }
+        });
+
+        // Mobile Testimonial Stack Logic
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const testimonialContainer = document.getElementById('testimonials-container');
+        let currentCardIndex = 0;
+        let touchStartX = 0;
+
+        function updateTestimonialStack() {
+            if (window.innerWidth >= 768) {
+                testimonialCards.forEach(card => {
+                    card.style.transform = '';
+                    card.style.opacity = '';
+                    card.style.zIndex = '';
+                });
+                return;
+            }
+
+            testimonialCards.forEach((card, index) => {
+                const i = (index - currentCardIndex + testimonialCards.length) % testimonialCards.length;
+
+                card.style.zIndex = testimonialCards.length - i;
+
+                if (i === 0) {
+                    // Top card
+                    card.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+                    card.style.opacity = '1';
+                } else if (i === 1) {
+                    // Next card (10% visible below)
+                    card.style.transform = 'translateY(10%) scale(0.95) rotate(-2deg)';
+                    card.style.opacity = '1';
+                } else {
+                    // Others hidden
+                    card.style.transform = 'translateY(20%) scale(0.9) rotate(-4deg)';
+                    card.style.opacity = '0';
+                }
+            });
+        }
+
+        if (testimonialContainer) {
+            testimonialContainer.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            testimonialContainer.addEventListener('touchend', e => {
+                const touchEndX = e.changedTouches[0].clientX;
+                if (Math.abs(touchStartX - touchEndX) > 50) {
+                    // Swipe Left or Right -> Next card
+                    currentCardIndex = (currentCardIndex + 1) % testimonialCards.length;
+                    updateTestimonialStack();
+                }
+            }, { passive: true });
+        }
+
+        window.addEventListener('resize', updateTestimonialStack);
+        // Initial call
+        updateTestimonialStack();
+
+        // Back to Top Logic
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('opacity-0', 'translate-y-10');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'translate-y-10');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
