@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Pipi Tabs</title>
+    <meta name="description" content="Privacy Policy for Pipi Tabs extension." />
+
+    <link rel="icon" type="image/png" href="./favicon.ico" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwindConfig.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body
+    class="bg-gradient-to-br from-indigo-50 via-white to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-black bg-fixed text-gray-800 dark:text-gray-100 font-sans transition-colors duration-300 animate-gradient">
+
+    <!-- NAVBAR -->
+    <nav
+        class="fixed top-0 left-0 w-full backdrop-blur-xl z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
+            <a href="index.html" class="font-great-vibes text-3xl dark:text-white text-3xl font-bold text-primary">Pipi
+                Tabs</a>
+            <div class="flex items-center gap-4">
+                <button id="themeToggle"
+                    class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300">
+                    <i class="fa-solid fa-moon dark:hidden text-2xl"></i>
+                    <i class="fa-solid fa-sun hidden text-yellow-300 dark:block text-2xl"></i>
+                </button>
+                <a href="index.html#waitlist"
+                    class="text-sm font-medium hover:underline dark:text-white hidden md:block">Join Waitlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-20 fade-up">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 dark:text-white">Privacy Policy</h1>
+        <p class="text-gray-500 dark:text-gray-400 mb-12">Last Updated: [Current Date]</p>
+
+        <section class="space-y-8">
+            <!-- Introduction -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Introduction</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Pipi ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains
+                    how we collect, use, and safeguard your information when you use our Chrome extension, Pipi.
+                </p>
+            </div>
+
+            <!-- Information We Collect -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Information We Collect</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                    Pipi is designed to help you manage and organize your bookmarks for research projects. To provide
+                    this service, we process the following data:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li><strong class="text-gray-800 dark:text-gray-100">Bookmark Data:</strong> The URLs and titles of
+                        the websites you choose to save.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Project/Group Names:</strong> The names of the
+                        folders or projects you create to organize your bookmarks.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Usage Data:</strong> Preferences and settings
+                        you configure within the extension.</li>
+                </ul>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-4 font-medium">
+                    We do not collect personal identification information (PII) such as your name, email address, or
+                    physical address.
+                </p>
+            </div>
+
+            <!-- How We Use Your Information -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">How We Use Your Information</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                    We use the information we collect solely for the purpose of providing the extension's functionality:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>To save and retrieve your bookmarks.</li>
+                    <li>To organize bookmarks into the research project groups you define.</li>
+                    <li>To display your saved content within the extension interface.</li>
+                </ul>
+            </div>
+
+            <!-- Data Storage and Security -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Data Storage and Security</h2>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li><strong class="text-gray-800 dark:text-gray-100">Local Storage:</strong> All data generated by
+                        Pipi (bookmarks, groups, settings) is stored locally on your device using the Chrome Storage
+                        API.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">No External Servers:</strong> We do not
+                        transmit your bookmark data to any external servers or third-party databases. Your data remains
+                        entirely under your control within your browser.</li>
+                </ul>
+            </div>
+
+            <!-- Permissions Usage -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Permissions Usage</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                    Pipi requires specific permissions to function correctly. Here is how each is used:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li><strong class="text-gray-800 dark:text-gray-100">Storage:</strong> Used to save your bookmarks,
+                        project groups, and preferences locally on your device.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Tabs:</strong> Used to access the URL and title
+                        of the active tab when you initiate a "save" action, and to open your saved bookmarks.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Alarms:</strong> Used to schedule internal
+                        background tasks to maintain extension performance.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Notifications:</strong> Used to provide visual
+                        feedback, such as confirming a bookmark has been successfully saved.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Offscreen:</strong> Used to perform background
+                        processing (such as data handling) without opening a visible window.</li>
+                    <li><strong class="text-gray-800 dark:text-gray-100">Host Permissions (All URLs):</strong> Required
+                        to interact with the websites you visit, enabling the extension to capture the URL and title for
+                        bookmarking purposes from any page.</li>
+                </ul>
+            </div>
+
+            <!-- Third-Party Services -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Third-Party Services</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Pipi does not share your data with third-party services, advertisers, or analytics providers.
+                </p>
+            </div>
+
+            <!-- Changes to This Privacy Policy -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Changes to This Privacy Policy</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    We may update our Privacy Policy from time to time. We will notify you of any changes by posting the
+                    new Privacy Policy on this page.
+                </p>
+            </div>
+
+            <!-- Contact Us -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 dark:text-white">Contact Us</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    If you have any questions about this Privacy Policy, please contact us at: <a
+                        href="mailto:akpanjoseph2021@gmail.com"
+                        class="text-blue-600 dark:text-blue-400 hover:underline">akpanjoseph2021@gmail.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+        class="py-10 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm transition-colors duration-300">
+        <p>© 2026 Pipi Tabs – Built by Akpan Joseph</p>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
+<!-- Contact Us -->
+<div>
+    <h2 class="text-2xl font-semibold mb-4 dark:text-white">Contact Us</h2>
+    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+        If you have any questions about this Privacy Policy, please contact us at: <a
+            href="mailto:akpanjoseph2021@gmail.com"
+            class="text-blue-600 dark:text-blue-400 hover:underline">akpanjoseph2021@gmail.com</a>
+    </p>
+</div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer
+    class="py-10 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm transition-colors duration-300">
+    <p>© 2026 Pipi Tabs – Built by Akpan Joseph</p>
+</footer>
+
+<!-- SCRIPT -->
+<script src="./script.js"></script>
+</body>
+
+</html>

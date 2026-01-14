@@ -33,32 +33,27 @@
 
         <div class="bg-yellow-300 text-black text-center py-2 font-medium ">
             <div class="flex justify-center items-center gap-2 text-sm md:text-base  ">
-                <span class="font-semibold">🚀 Launching in - </span>
-                <span id="countdown"
-                    class="bg-black text-green-400 px-3 py-1 rounded font-mono font-bold tracking-widest border border-gray-800 shadow-inner min-w-[180px]">Loading...</span>
-                <span class="hidden sm:inline">-</span>
-                <span class="hidden md:flex ">Join the waitlist! <a href="#waitlist"
-                        class="underline font-bold absolute right-4">Sign Up
-                        Here</a> 🚀</span>
+                <span>🚀 We are LIVE on the Chrome Web Store!</span>
+                <a href="https://chromewebstore.google.com/detail/Pipi/fpenkllimfengpmkkcmpkmcplkboboak" target="_blank"
+                    rel="noopener noreferrer" class="font-bold underline">Install Now!</a>
             </div>
         </div>
-
 
         <nav
             class=" w-full backdrop-blur-xl z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-                <h1 class="font-great-vibes text-3xl dark:text-white text-3xl font-bold text-primary">Pipi Tabs</h1>
+                <h1 class="font-great-vibes text-3xl dark:text-white text-3xl font-bold text-primary">Pipi
+                    Tabs</h1>
                 <div class="flex items-center gap-4">
                     <button id="themeToggle"
                         class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300">
                         <i class="fa-solid fa-moon dark:hidden text-2xl"></i>
-
                         <i class="fa-solid fa-sun hidden text-yellow-300 dark:block text-2xl"></i>
-
                     </button>
-                    <a href="#waitlist" class="text-sm font-medium hover:underline dark:text-white hidden md:block">Join
-                        Waitlist
-
+                    <a href="https://chromewebstore.google.com/detail/Pipi/fpenkllimfengpmkkcmpkmcplkboboak"
+                        target="_blank" rel="noopener noreferrer"
+                        class="text-sm font-medium hover:underline dark:text-white hidden md:block">Install
+                        Now
                     </a>
                 </div>
             </div>
@@ -84,10 +79,15 @@
                         chaotic tabs
                         into a structured workflow with just a few clicks.
                     </p>
-                    <a href="#waitlist"
-                        class="bg-black text-white px-6 py-3 group rounded-md  px-40  text-md hover:text-secondary font-bold hover:bg-tabBg transition dark:hover:bg-black dark:bg-tabBg dark:text-black dark:hover:text-white ">Join
-                        Waitlist <i
-                            class="fa-solid fa-arrow-right -rotate-[50deg] transition-transform group-hover:translate-x-2 group-hover:rotate-[0deg]"></i></a>
+                    <a href="https://chromewebstore.google.com/detail/Pipi/fpenkllimfengpmkkcmpkmcplkboboak"
+                        target="_blank" rel="noopener noreferrer"
+                        class="bg-black text-white px-8 py-3 group rounded-md text-md hover:text-secondary font-bold hover:bg-tabBg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 dark:hover:bg-black dark:bg-tabBg dark:text-black dark:hover:text-white flex items-center justify-center gap-4 max-w-max mx-auto">
+                        Add to Chrome
+                        <i
+                            class="fa-brands fa-chrome text-2xl transition-transform duration-300 group-hover:rotate-12"></i>
+                        <!-- <i
+                            class="fa-solid fa-arrow-right -rotate-[50deg] transition-transform group-hover:translate-x-2 group-hover:rotate-[0deg]"></i> -->
+                    </a>
                 </section>
 
                 <section class=" transform opacity-40 w-full max-w-4xl mt-20 z-2  pointer-events-none dark:opacity-80">
@@ -314,13 +314,48 @@
         </div>
     </section>
 
-    <!-- WAITLIST -->
-    <section id="waitlist"
+    <!-- FAQ -->
+    <section id="faq"
+        class="py-24 bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 md:relative top-40">
+        <div class="max-w-4xl mx-auto px-6 fade-up">
+            <h3 class="text-3xl font-semibold text-center mb-12">🤔 Frequently Asked Questions</h3>
+            <div class="space-y-6">
+                <div
+                    class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 rounded-xl shadow-sm border border-white/20 dark:border-gray-700/50 hover:shadow-md transition glass-card">
+                    <h4 class="text-lg font-semibold mb-2 dark:text-white">Is Pipi Tabs free to use?</h4>
+                    <p class="text-gray-600 dark:text-gray-300">Yes! Pipi Tabs is currently completely free to download
+                        and use from the Chrome Web Store.</p>
+                </div>
+                <div
+                    class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 rounded-xl shadow-sm border border-white/20 dark:border-gray-700/50 hover:shadow-md transition glass-card">
+                    <h4 class="text-lg font-semibold mb-2 dark:text-white">Does it sync across my devices?</h4>
+                    <p class="text-gray-600 dark:text-gray-300">Yes, as long as you are signed into your Google Chrome
+                        profile, your saved tabs and reminders will sync automatically.</p>
+                </div>
+                <div
+                    class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 rounded-xl shadow-sm border border-white/20 dark:border-gray-700/50 hover:shadow-md transition glass-card">
+                    <h4 class="text-lg font-semibold mb-2 dark:text-white">How do I set a reminder?</h4>
+                    <p class="text-gray-600 dark:text-gray-300">Simply open the extension popup, select the tab you want
+                        to save, pick a date and time, and click "Save".</p>
+                </div>
+                <div
+                    class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 rounded-xl shadow-sm border border-white/20 dark:border-gray-700/50 hover:shadow-md transition glass-card">
+                    <h4 class="text-lg font-semibold mb-2 dark:text-white">Is my data private?</h4>
+                    <p class="text-gray-600 dark:text-gray-300">Absolutely. Your bookmarks and reminders are stored
+                        locally in your browser and synced via Chrome Storage. We do not sell your data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter"
         class="py-24 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 md:relative top-40">
         <div class="max-w-md mx-auto px-6 text-center fade-up">
-            <h3 class="text-3xl font-semibold mb-6">Join the Waitlist</h3>
-            <p class="text-gray-500 dark:text-gray-400 mb-8">Be the first to try Pipi Tabs when it launches.</p>
-            <form id="waitlistForm" class="space-y-4">
+            <h3 class="text-3xl font-semibold mb-6">Stay Updated</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-8">Subscribe to our newsletter for the latest features,
+                productivity tips, and updates.</p>
+            <form id="newsletterForm" class="space-y-4">
                 <input type="text" name="name" placeholder="Your name" required
                     class="w-full border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-black dark:focus:ring-white outline-none transition-colors" />
                 <input type="email" name="email" placeholder="Your email" required
@@ -330,7 +365,7 @@
                 <button type="submit"
                     class="w-full bg-black dark:bg-white dark:text-black text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition flex items-center justify-center gap-2"
                     id="submitBtn">
-                    <span>Join Waitlist</span>
+                    <span>Subscribe</span>
                     <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
                 </button>
             </form>
@@ -355,7 +390,8 @@
     <!-- FOOTER -->
     <footer
         class="py-10 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm transition-colors duration-300 md:relative top-40">
-        <p>© 2026 Pipi Tabs – Built by Akpan Joseph</p>
+        <p>© 2026 Pipi Tabs – Built by Akpan Joseph | <a href="privacy.html"
+                class="hover:text-gray-600 dark:hover:text-gray-200 transition-colors">Privacy Policy</a></p>
     </footer>
 
     <!-- SCRIPT -->

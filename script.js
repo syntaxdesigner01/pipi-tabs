@@ -43,17 +43,17 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 
-// waitlist form submit
-const form = document.getElementById("waitlistForm");
+// newsletter form submit
+const form = document.getElementById("newsletterForm");
 const msg = document.getElementById("formMessage");
 
 if (form && msg && submitBtn && messageBox) {
     // Check if already joined
-    if (localStorage.getItem('pipi_waitlist_joined') === 'true') {
+    if (localStorage.getItem('pipi_newsletter_joined') === 'true') {
         const inputs = form.querySelectorAll('input');
         inputs.forEach(input => input.disabled = true);
         submitBtn.disabled = true;
-        submitBtn.innerHTML = "<span>Joined! 🚀</span>";
+        submitBtn.innerHTML = "<span>Subscribed! 🚀</span>";
         submitBtn.classList.add("opacity-50", "cursor-not-allowed");
     }
 
@@ -102,18 +102,18 @@ if (form && msg && submitBtn && messageBox) {
 
             if (data.status === "success") {
                 messageBox.textContent =
-                    "🎉 You’re on the waitlist! Check your inbox.";
+                    "🎉 You’re subscribed! Check your inbox.";
                 messageBox.classList.add("bg-green-500");
                 form.reset();
                 msg.classList.add("hidden")
-                localStorage.setItem('pipi_waitlist_joined', 'true');
+                localStorage.setItem('pipi_newsletter_joined', 'true');
             }
 
             else if (data.status === "duplicate") {
                 messageBox.textContent =
-                    "😉 You’re already on the waitlist. Check your inbox.";
+                    "😉 You’re already subscribed. Check your inbox.";
                 messageBox.classList.add("bg-gray-500");
-                localStorage.setItem('pipi_waitlist_joined', 'true');
+                localStorage.setItem('pipi_newsletter_joined', 'true');
                 msg.classList.add("hidden")
             }
 
@@ -143,8 +143,8 @@ if (form && msg && submitBtn && messageBox) {
         }
 
         // UI: restore button if not joined
-        if (localStorage.getItem('pipi_waitlist_joined') === 'true') {
-            submitBtn.innerHTML = "<span>Joined! 🚀</span>";
+        if (localStorage.getItem('pipi_newsletter_joined') === 'true') {
+            submitBtn.innerHTML = "<span>Subscribed! 🚀</span>";
             const inputs = form.querySelectorAll('input');
             inputs.forEach(input => input.disabled = true);
         } else {
@@ -234,41 +234,3 @@ if (backToTopBtn) {
         });
     });
 }
-
-
-
-
-
-// Countdown Timer Logic
-
-const countdownElement = document.getElementById('countdown');
-
-// Target next Saturday at 00:00:00 (Friday Midnight)
-const now = new Date();
-const targetDate = new Date();
-
-// 6 is Saturday
-const dayOfWeek = 6;
-const daysUntilSaturday = (dayOfWeek + 7 - now.getDay()) % 7;
-
-targetDate.setDate(now.getDate() + daysUntilSaturday);
-targetDate.setHours(0, 0, 0, 0);
-
-// If target is in the past, move to next week
-if (targetDate <= now) {
-    targetDate.setDate(targetDate.getDate() + 7);
-}
-
-setInterval(() => {
-    const distance = targetDate.getTime() - new Date().getTime();
-    if (distance < 0) {
-        countdownElement.innerHTML = "LIVE NOW!";
-        return;
-    }
-    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((distance % (1000 * 60)) / 1000);
-    const pad = (n) => n.toString().padStart(2, '0');
-    countdownElement.innerHTML = `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
-}, 1000);
